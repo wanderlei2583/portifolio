@@ -4,11 +4,10 @@
 Este é o repositório do meu portfólio pessoal, desenvolvido para apresentar meus projetos, habilidades e minha jornada como desenvolvedor. O projeto segue uma estética minimalista, com foco total no conteúdo e na experiência do usuário.
 O backend é construído em Go (Golang) para garantir alta performance e escalabilidade, enquanto o frontend é desenvolvido com React e Vite para uma interface moderna, rápida e reativa.
 
-Visite a versão online: [Em Construção...]![a](./assets/under-construction-2891888_960_720.jpg)
+Visite a versão online: [Em Construção...](./assets/under-construction-2891888_960_720.jpg)
 
-## ✨ Funcionalidades PrincipaisDesign Minimalista:
-
-* Interface limpa e focada, com amplo uso de espaço em branco para uma navegação intuitiva.
+## ✨ Funcionalidades Principais
+* Design Minimalista:  Interface limpa e focada, com amplo uso de espaço em branco para uma navegação intuitiva.
 * Backend Performático: API RESTful desenvolvida em Go para servir os dados do portfólio de forma rápida e eficiente.
 * Frontend Reativo: Interface construída com React, garantindo uma experiência de usuário fluida e dinâmica sem recarregamento de páginas.
 * Formulário de Contato Funcional: Um endpoint no backend processa as mensagens enviadas pelo formulário de contato, notificando-me por email.
