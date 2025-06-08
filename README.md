@@ -15,7 +15,9 @@ Visite a versão online: [Em Construção...](./assets/under-construction-289188
 
 ## 🚀 Tecnologias Utilizadas
 Este projeto foi construído utilizando as seguintes tecnologias:
+
 | Tecnologia | Descrição | 
+|------------ | --------- |
 | Go (Golang) | Linguagem utilizada para o desenvolvimento do backend e da API.|
 | Gin | Framework web para Go, usado para criar o servidor e as rotas da API.|
 | React | Biblioteca JavaScript para a construção da interface de usuário.|
