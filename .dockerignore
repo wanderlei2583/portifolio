@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+.github/
+
+# Go output
+/bin
+/dist
+*.exe
+*.test
+main
+
+# IDEs e Editores
+.vscode
+.idea
+*.swp
+*.swo
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Outros
+README.md
+Makefile
+GEMINI.md

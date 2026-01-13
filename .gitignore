@@ -1,0 +1,65 @@
+# =========================
+# Sistema / Editor
+# =========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+.github/
+GEMINI.md
+
+# =========================
+# Env / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+secrets/
+*.key
+*.pem
+*.crt
+
+# =========================
+# Frontend (Astro / Bun)
+# =========================
+apps/frontend/node_modules/
+apps/frontend/.astro/
+apps/frontend/dist/
+apps/frontend/.output/
+apps/frontend/.bun/
+bun.lockb
+
+# =========================
+# Backend (Go)
+# =========================
+apps/backend/bin/
+apps/backend/build/
+apps/backend/tmp/
+apps/backend/*.out
+
+# Go cache
+/go/pkg/
+/go/bin/
+
+# =========================
+# Docker
+# =========================
+*.tar
+*.tgz
+docker-compose.override.yml
+
+# =========================
+# CI / Reports
+# =========================
+coverage/
+reports/
+
+# =========================
+# Infra / Cloud
+# =========================
+*.tfstate
+*.tfstate.*
+.terraform/
+cloudflare.env
