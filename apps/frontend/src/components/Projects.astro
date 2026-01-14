@@ -1,0 +1,54 @@
+---
+const projects = [
+    {
+        title: "Wrtoriama Backend",
+        description: "API de alta performance construída em Go 1.25+ com Chi Router. Arquitetura limpa, dockerizada e pronta para escala.",
+        techs: ["Go", "Chi", "Docker", "PostgreSQL"],
+        link: "#",
+        color: "border-blue-500/30 hover:border-blue-500/60"
+    },
+    {
+        title: "Portfolio Frontend",
+        description: "Interface reativa e veloz utilizando Astro e Bun. Estilização moderna com Tailwind CSS v4.",
+        techs: ["Astro", "Typescript", "Tailwind", "Bun"],
+        link: "#",
+        color: "border-purple-500/30 hover:border-purple-500/60"
+    },
+    {
+        title: "Infraestrutura Cloud",
+        description: "Setup DevOps completo com Docker Compose, CI/CD via GitHub Actions e deploy automatizado.",
+        techs: ["Docker", "GitHub Actions", "Cloudflare", "Make"],
+        link: "#",
+        color: "border-pink-500/30 hover:border-pink-500/60"
+    }
+];
+---
+
+<section id="projetos" class="container mx-auto px-4 py-16">
+    <div class="flex items-center gap-4 mb-12">
+        <div class="h-px bg-slate-700 flex-1"></div>
+        <h2 class="text-3xl font-bold text-center text-slate-100">Projetos em Destaque</h2>
+        <div class="h-px bg-slate-700 flex-1"></div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+            <div class={`bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 transition-all duration-300 border ${project.color} hover:-translate-y-1 hover:shadow-xl group`}>
+                <h3 class="text-xl font-bold mb-3 text-slate-100 group-hover:text-white transition-colors">{project.title}</h3>
+                <p class="text-slate-400 mb-6 leading-relaxed text-sm">{project.description}</p>
+                
+                <div class="flex flex-wrap gap-2 mb-6">
+                    {project.techs.map((tech) => (
+                        <span class="bg-slate-700/50 text-xs font-mono px-2 py-1 rounded border border-slate-600/50 text-slate-300">
+                            {tech}
+                        </span>
+                    ))}
+                </div>
+                
+                <a href={project.link} class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                    Ver Código <span class="ml-1 transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+            </div>
+        ))}
+    </div>
+</section>

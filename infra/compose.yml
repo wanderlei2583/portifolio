@@ -1,12 +1,12 @@
 services:
   frontend:
-    image: ghcr.io/appuser/frontend:latest
+    image: ghcr.io/appuser/wrtoriama-frontend:latest
     restart: always
     ports:
       - "8080:80"
 
   backend:
-    image: ghcr.io/appuser/backend:latest
+    image: ghcr.io/appuser/wrtoriama-backend:latest
     restart: always
     env_file:
       - ../.env

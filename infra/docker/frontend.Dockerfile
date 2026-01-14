@@ -2,7 +2,7 @@
 FROM oven/bun:1 AS build
 WORKDIR /app
 
-COPY apps/frontend/package.json apps/frontend/bun.lockb ./
+COPY apps/frontend/package.json apps/frontend/bun.lock ./
 RUN bun install
 
 COPY apps/frontend/ .

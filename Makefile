@@ -16,7 +16,11 @@ DATE         := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 # Registry / Imagens
 # -------------------------
 REGISTRY     := ghcr.io
-REPO         := $(shell git config --get remote.origin.url | sed -E 's#.*/([^/]+/[^/.]+)(\.git)?#\1#')
+REPO_URL     := $(shell git config --get remote.origin.url 2>/dev/null)
+REPO         := $(shell echo "$(REPO_URL)" | sed -E 's#.*/([^/]+/[^/.]+)(\.git)?#\1#')
+ifeq ($(REPO),)
+	REPO := appuser/wrtoriama
+endif
 
 FRONTEND_IMG := $(REGISTRY)/$(REPO)-frontend
 BACKEND_IMG  := $(REGISTRY)/$(REPO)-backend
