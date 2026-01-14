@@ -1,4 +1,4 @@
-# 🚀 DevWander - Portfólio Pessoal
+# 🚀 DevWander - Portfólio Pessoal <!-- FIX: Em producao...-->
 
 Bem-vindo ao repositório do meu portfólio pessoal e profissional. Este projeto é um **monorepo** moderno projetado para alta performance, escalabilidade e facilidade de manutenção, utilizando as melhores práticas de desenvolvimento Full Stack e DevOps.
 
