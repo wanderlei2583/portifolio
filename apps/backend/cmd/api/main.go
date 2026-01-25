@@ -26,16 +26,18 @@ func main() {
 
 	// 4. Configurar Servidor
 	srv := &http.Server{
-		Addr:         ":" + cfg.Port,
-		Handler:      r,
-		ReadTimeout:  10 * time.Second,
-		WriteTimeout: 10 * time.Second,
-		IdleTimeout:  60 * time.Second,
+		Addr:              ":" + cfg.Port,
+		Handler:           r,
+		ReadTimeout:       10 * time.Second,
+		ReadHeaderTimeout: 5 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       60 * time.Second,
+		MaxHeaderBytes:    1 << 20,
 	}
 
 	// 5. Iniciar Servidor em uma Goroutine
 	go func() {
-		slog.Info("Server starting", "port", cfg.Port, "env", "production")
+		slog.Info("Server starting", "port", cfg.Port, "env", cfg.Env)
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			slog.Error("Could not listen on", "addr", cfg.Port, "error", err)
 			os.Exit(1)

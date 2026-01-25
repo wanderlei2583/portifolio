@@ -17,7 +17,7 @@ DATE         := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 # -------------------------
 REGISTRY     := ghcr.io
 REPO_URL     := $(shell git config --get remote.origin.url 2>/dev/null)
-REPO         := $(shell echo "$(REPO_URL)" | sed -E 's#.*/([^/]+/[^/.]+)(\.git)?#\1#')
+REPO         := $(shell echo "$(REPO_URL)" | sed -E 's#.*/([^/]+/[^/.]+)(\.git)?#\1#' | tr '[:upper:]' '[:lower:]')
 ifeq ($(REPO),)
 	REPO := appuser/wrtoriama
 endif
@@ -60,12 +60,21 @@ help:
 	@echo ""
 	@echo "Runtime:"
 	@echo "  make up                 Subir stack"
+	@echo "  make up-dev             Subir stack (build local)"
+	@echo "  make logs-dev           Logs do stack local"
 	@echo "  make down               Derrubar stack"
 	@echo "  make logs               Logs"
 	@echo "  make status             Status + healthcheck"
 	@echo ""
 	@echo "Cloudflare:"
 	@echo "  make tunnel             Subir Cloudflare Tunnel"
+	@echo ""
+	@echo "TLS/Certificados:"
+	@echo "  make cert-issue DOMAIN=...   Emitir certificado (Let's Encrypt)"
+	@echo "  make cert-renew              Renovar certificado"
+	@echo "  make cert-local              Gerar certificado local (self-signed)"
+	@echo "  make up-bootstrap            Subir proxy em HTTP (bootstrap)"
+	@echo "  make up-local                Subir stack com HTTPS local"
 	@echo ""
 	@echo "Deploy:"
 	@echo "  make deploy             Deploy produção"
@@ -149,6 +158,22 @@ up:
 	@echo ">> Subindo stack"
 	docker compose -f $(COMPOSE_FILE) up -d
 
+up-bootstrap:
+	@echo ">> Subindo proxy em HTTP (bootstrap)"
+	docker compose -f $(COMPOSE_FILE) -f infra/compose.bootstrap.yml up -d reverse-proxy
+
+up-local:
+	@echo ">> Subindo stack com HTTPS local"
+	docker compose -f $(COMPOSE_FILE) -f infra/compose.local.yml up -d --build
+
+up-dev:
+	@echo ">> Subindo stack (build local)"
+	docker compose -f $(COMPOSE_FILE) -f infra/compose.local.yml up -d --build
+
+logs-dev:
+	@echo ">> Logs do stack local"
+	docker compose -f $(COMPOSE_FILE) -f infra/compose.local.yml logs -f
+
 down:
 	@echo ">> Derrubando stack"
 	docker compose -f $(COMPOSE_FILE) down
@@ -169,6 +194,27 @@ status:
 tunnel:
 	@echo ">> Cloudflare Tunnel"
 	cloudflared tunnel run wrtoriama
+
+# =========================================================
+# TLS / Certificados
+# =========================================================
+cert-issue:
+ifndef DOMAIN
+	$(error Use DOMAIN=seu-dominio.com.br)
+endif
+ifndef EMAIL
+	$(error Use EMAIL=seu@email.com)
+endif
+	@echo ">> Emitindo certificado Let's Encrypt para $(DOMAIN)"
+	@bash scripts/issue-cert.sh $(DOMAIN) $(EMAIL)
+
+cert-renew:
+	@echo ">> Renovando certificado Let's Encrypt"
+	@bash scripts/renew-cert.sh
+
+cert-local:
+	@echo ">> Gerando certificado local (self-signed)"
+	@bash infra/nginx/create-local-cert.sh
 
 # =========================================================
 # Deploy

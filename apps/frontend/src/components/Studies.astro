@@ -1,0 +1,70 @@
+---
+const studies = [
+	{
+		title: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+		institution: "Universidade Cruzeiro do Sul",
+		date: "13/09/2023",
+		details: "Conclusão de graduação em ADS.",
+		color: "border-sky-500/30 hover:border-sky-500/60"
+	},
+	{
+		title: "Pós‑Graduação em Desenvolvimento Avançado em Golang (GoExpert)",
+		institution: "Faculdade Brasília - FBr",
+		date: "01/08/2023 a 06/03/2024",
+		details: "Carga horária: 360 horas.",
+		color: "border-emerald-500/30 hover:border-emerald-500/60"
+	},
+	{
+		title: "Pós‑Graduação Lato Sensu em Ciência de Dados",
+		institution: "Universidade Cesumar (Unicesumar)",
+		date: "01/02/2025",
+		details: "Conclusão do curso de pós‑graduação.",
+		color: "border-indigo-500/30 hover:border-indigo-500/60"
+	},
+	{
+		title: "Pós‑Graduação em Engenharia de Software",
+		institution: "Estácio",
+		date: "01/2025 a 12/2025",
+		details: "Pós‑graduação em andamento/conclusão no período informado.",
+		color: "border-purple-500/30 hover:border-purple-500/60"
+	},
+	{
+		title: "Go Expert",
+		institution: "Curso de Extensão",
+		date: "03/11/2024",
+		details: "Carga horária: 120 horas.",
+		color: "border-blue-500/30 hover:border-blue-500/60"
+	},
+	{
+		title: "Curso de Python",
+		institution: "FIAP",
+		date: "12/04/2025",
+		details: "Carga horária: 80 horas.",
+		color: "border-yellow-500/30 hover:border-yellow-500/60"
+	}
+];
+---
+
+<section id="estudos" class="container mx-auto px-4 py-16">
+	<div class="flex items-center gap-4 mb-12">
+		<div class="h-px bg-slate-700 flex-1"></div>
+		<h2 class="text-3xl font-bold text-center text-slate-100">Cursos e Estudos</h2>
+		<div class="h-px bg-slate-700 flex-1"></div>
+	</div>
+
+	<p class="text-slate-300 text-center max-w-3xl mx-auto mb-10">
+		Formações e especializações reconhecidas pelo MEC, com foco em desenvolvimento de software,
+		arquitetura, ciência de dados e tecnologias modernas.
+	</p>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+		{studies.map((item) => (
+			<div class={`bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 transition-all duration-300 border ${item.color} hover:-translate-y-1 hover:shadow-xl`}>
+				<h3 class="text-lg font-bold mb-2 text-slate-100">{item.title}</h3>
+				<p class="text-slate-300 text-sm mb-2">{item.institution}</p>
+				<p class="text-slate-400 text-xs mb-4">{item.date}</p>
+				<p class="text-slate-400 text-sm leading-relaxed">{item.details}</p>
+			</div>
+		))}
+	</div>
+</section>
