@@ -1,0 +1,32 @@
+steps:
+  build:
+    image: oven/bun:1
+    commands:
+      - cd apps/frontend
+      - bun install
+      - bun run build
+    when:
+      branch: main
+      path:
+        include:
+          - "apps/frontend/**"
+
+  deploy_ftp:
+    image: alpine:3.20
+    environment:
+      FTP_HOST:
+        from_secret: FTP_HOST
+      FTP_USER:
+        from_secret: FTP_USER
+      FTP_PASS:
+        from_secret: FTP_PASS
+      FTP_DIR:
+        from_secret: FTP_DIR
+    commands:
+      - apk add --no-cache lftp
+      - lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; mirror -R --delete --verbose apps/frontend/dist/ $FTP_DIR; bye" -u "$FTP_USER","$FTP_PASS" "$FTP_HOST"
+    when:
+      branch: main
+      path:
+        include:
+          - "apps/frontend/**"
