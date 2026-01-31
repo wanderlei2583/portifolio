@@ -82,6 +82,9 @@ help:
 	@echo "Higiene:"
 	@echo "  make clean              Limpeza geral"
 	@echo ""
+	@echo "Deploy (FTP):"
+	@echo "  make deploy-ftp         Build e envia via FTP"
+	@echo ""
 
 # =========================================================
 # Bootstrap
@@ -235,3 +238,10 @@ clean:
 	rm -rf $(FRONT_DIR)/dist
 	rm -rf $(BACK_DIR)/bin
 	docker system prune -f
+
+# =========================================================
+# Deploy (FTP)
+# =========================================================
+deploy-ftp:
+	@echo ">> Deploy via FTP"
+	@bash scripts/deploy-ftp.sh
