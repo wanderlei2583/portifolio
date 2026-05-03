@@ -8,6 +8,8 @@ Thumbs.db
 .idea/
 .vscode/
 .github/
+.claude/
+CLAUDE.md
 GEMINI.md
 AGENTS.md
 
@@ -65,3 +67,8 @@ reports/
 .terraform/
 cloudflare.env
 .env.deploy
+
+# =========================
+# Documentos locais (LaTeX)
+# =========================
+docs/
