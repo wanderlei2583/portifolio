@@ -7,7 +7,7 @@ Thumbs.db
 *.swo
 .idea/
 .vscode/
-.github/
+# .github/ removido — workflows precisam ser versionados
 .claude/
 CLAUDE.md
 GEMINI.md
